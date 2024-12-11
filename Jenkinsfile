@@ -21,13 +21,13 @@ pipeline {
                 stage('Initiate DNAC Discovery for Ho Chi Minh Office') {
                     steps {
                         echo 'Start Discovery for Ho Chi Minh'
-                        sh 'python3 vnhchm01_discover.py'
+                        sh 'python3 vnhchm01_discovery.py'
                     }
                 }
                 stage('Initiate DNAC Discovery for Bangkok Office') {
                     steps {
                         echo 'Start Discovery for Bangkok'
-                        sh 'python3 tlbkok01_discover.py'
+                        sh 'python3 tlbkok01_discovery.py'
                     }
                 }
             }

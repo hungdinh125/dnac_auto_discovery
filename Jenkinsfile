@@ -30,7 +30,7 @@ pipeline {
         }
     }
 }
-   post {
+    post {
         always {
             cleanWs(cleanWhenNotBuilt: false,
                     deleteDirs: true,

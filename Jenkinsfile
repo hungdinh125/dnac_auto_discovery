@@ -1,4 +1,4 @@
-// Initiate the discovers for all locations in parallel
+// DNAC cannot perform parallel discovery tasks, should do one by one
 
 pipeline {
     agent any
@@ -16,25 +16,21 @@ pipeline {
                 sh 'ls -la'
             }
         }
-        stage('Initiate DNAC Discovery for APAC Offices') {
-            parallel {
-                stage('Initiate DNAC Discovery for Ho Chi Minh Office') {
-                    steps {
-                        echo 'Start Discovery for Ho Chi Minh'
-                        sh 'python3 vnhchm01_discovery.py'
-                    }
-                }
-                stage('Initiate DNAC Discovery for Bangkok Office') {
-                    steps {
-                        echo 'Start Discovery for Bangkok'
-                        sh 'python3 tlbkok01_discovery.py'
-                    }
-                }
+        stage('Initiate DNAC Discovery for Ho Chi Minh Office') {
+            steps {
+                echo 'Start Discovery for Ho Chi Minh'
+                sh 'python3 vnhchm01_discovery.py'
             }
         }
-
+        stage('Initiate DNAC Discovery for Bangkok Office') {
+            steps {
+                echo 'Start Discovery for Bangkok'
+                sh 'python3 tlbkok01_discovery.py'
+            }
+        }
     }
-    post {
+}
+   post {
         always {
             cleanWs(cleanWhenNotBuilt: false,
                     deleteDirs: true,
